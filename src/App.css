@@ -5,19 +5,34 @@
   justify-content: center;
 }
 
-body{
-  height: 100vh;
-}
-
 .formBody {
-  border: 1px solid gold;
+  border: 1px solid darkgray;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 15px;
+  align-items: center;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 10px;
+  padding-bottom: 20px;
 }
 
-.form__header{
+.form__header {
+  width: 100%;
   text-align: left;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid darkgray;
+  background-color: rgb(241, 241, 241);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 20px;
+}
+
+.dataBase {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dataBase .singleTodo:nth-child(2n + 1) {
+  background-color: rgb(241, 241, 241);
 }

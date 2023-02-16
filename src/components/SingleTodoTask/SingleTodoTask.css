@@ -1,4 +1,63 @@
 .singleTodo {
-    display: flex;
-    gap: 15px;
+  width: 90%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid darkgray;
+  border-bottom: 1px solid darkgray;
+  padding: 0 3px;
+}
+
+.id {
+  font-size: 17px;
+  width: 10%;
+}
+
+.task {
+  width: 70%;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+}
+
+#check {
+  height: 35px;
+}
+
+#edit {
+  height: 20px;
+}
+
+#erase {
+  height: 25px;
+}
+
+picture {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+}
+
+.pictureCheck {
+  background-color: grey;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pictureEdit {
+  background-color: #0ccaf0;
+}
+
+.pictureErase {
+  background-color: #dc3545;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
