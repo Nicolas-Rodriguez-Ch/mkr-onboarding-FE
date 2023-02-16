@@ -7,13 +7,18 @@ import erase from "../../images/delete-1-svgrepo-com.svg";
 const handleOnClick = () => {};
 const SingleTodoTask = ({ id, task }) => {
   const [tarea, setTarea] = useState("");
+
   return (
     <div className="singleTodo">
-      <p className="id">{id}1</p>
-      <input type="text" className="task" disabled>
-        {task}
-      </input>
-      <div className="buttons">
+      <p className="id">{id}</p>
+        <input 
+            type="text" 
+            className="task" 
+            disabled 
+            value={task}
+            >
+        </input>
+    <div className="buttons">
         <picture onClick={handleOnClick} className="pictureCheck">
           <img src={check} alt="check" id="check"></img>
         </picture>
