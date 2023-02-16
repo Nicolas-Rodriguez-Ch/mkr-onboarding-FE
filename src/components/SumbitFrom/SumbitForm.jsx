@@ -1,19 +1,21 @@
-import './SumbitFrom.css'
+import "./SumbitFrom.css";
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
-const SumbitFrom = ()=> {
+const SumbitFrom = () => {
+  const handleSumbit = (event) => {
+    event.preventDefault();
+  };
 
-    const handleSumbit = (event) =>{
-        event.preventDefault();
-    }
-
-    return(
+  return (
     <form>
-        <input type='text'></input>
-        <button type='sumbit' className='add__button' onSubmit={handleSumbit}>+ agregar</button>
+      <input type="text" className="text"></input>
+      <button type="sumbit" className="add__button" onSubmit={handleSumbit}>
+        {" "}
+        <b>+</b> Agregar
+      </button>
     </form>
-    )
-}
+  );
+};
 
 export default SumbitFrom;
