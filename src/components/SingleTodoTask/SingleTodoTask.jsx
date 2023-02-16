@@ -5,12 +5,19 @@ import check from "../../images/check-small-svgrepo-com.svg";
 import edit from "../../images/write-svgrepo-com.svg";
 import erase from "../../images/delete-1-svgrepo-com.svg";
 
-const SingleTodoTask = ({ id, task, setStyle }) => {
-  const [tarea, setTarea] = useState("");
+const SingleTodoTask = ({ id, task, setStyle, setIndividualId, checkStatus }) => {
 
-  const handleCheckOnClick = () => { console.log('click')};
+  const handleCheckOnClick = () => { 
+    axios.put(`http://localhost:8000/api/tasks`, {
+            id: id, 
+            task: task
+        }).then((res) => {
+            if(res.status === 202) return window.location.reload();
+        });
+  };
 
   const handleEditOnClick = ()=> {
+    setIndividualId(id);
     setStyle('');
   }
 
@@ -22,7 +29,7 @@ const SingleTodoTask = ({ id, task, setStyle }) => {
   }
 
   return (
-    <div className="singleTodo">
+    <div className={`singleTodo ${checkStatus}`}>
       <p className="id">{id}</p>
         <input 
             type="text" 
@@ -34,7 +41,7 @@ const SingleTodoTask = ({ id, task, setStyle }) => {
     <div className="buttons">
         <picture 
           onClick={handleCheckOnClick} 
-          className="pictureCheck"
+          className={`pictureCheck ${checkStatus}`}
         >
           <img 
             src={check} 

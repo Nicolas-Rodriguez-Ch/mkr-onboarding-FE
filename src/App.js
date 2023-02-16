@@ -8,6 +8,7 @@ import axios from "axios";
 function App() {
   const [taskList, setTasklist] = useState([]);
   const [style, setStyle] = useState("none");
+  const [individualId, setIndividualId] = useState(0);
   useEffect(() => {
     axios.get("http://localhost:8000/api/tasks").then((res) => {
       setTasklist(res.data);
@@ -20,20 +21,23 @@ function App() {
     <div className="App">
       <UpdateSingleTodo 
         style={style}
+        individualId={individualId}
       />
       <section className="formBody">
         <header className="form__header">To-do List</header>
-        <SumbitFrom />
+          <SumbitFrom />
         <section className="dataBase">
           {taskList.map((element) => {
             return (
               <SingleTodoTask
-                key={element.id}
-                id={element.id}
-                task={element.task}
-                setStyle = {setStyle}
+              key={element.id}
+              id={element.id}
+              task={element.task}
+              checkStatus={element.check}
+              setStyle = {setStyle}
+              setIndividualId={setIndividualId}
               />
-            );
+              );
           })}
         </section>
       </section>

@@ -37,6 +37,15 @@
 .dataBase .singleTodo:nth-child(2n + 1) {
   background-color: rgb(241, 241, 241);
 }
+
 .none{
   display: none;
+}
+
+.true {
+  background-color: #C3F2D3 !important;
+  color: black !important;
+}
+.true #check{
+  background-color: darkgreen;
 }
