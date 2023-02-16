@@ -1,0 +1,8 @@
+.add__button {
+    border: none;
+    background-color: darkgreen;
+    color: white;
+}
+input, button {
+    height: 35px;
+}
