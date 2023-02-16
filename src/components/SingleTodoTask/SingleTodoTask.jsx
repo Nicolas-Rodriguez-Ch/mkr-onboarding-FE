@@ -1,12 +1,25 @@
 import "./SingleTodoTask.css";
 import { useState } from "react";
+import axios from "axios";
 import check from "../../images/check-small-svgrepo-com.svg";
 import edit from "../../images/write-svgrepo-com.svg";
 import erase from "../../images/delete-1-svgrepo-com.svg";
 
-const handleOnClick = () => {};
-const SingleTodoTask = ({ id, task }) => {
+const SingleTodoTask = ({ id, task, setStyle }) => {
   const [tarea, setTarea] = useState("");
+
+  const handleCheckOnClick = () => { console.log('click')};
+
+  const handleEditOnClick = ()=> {
+    setStyle('');
+  }
+
+  const handleDeleteOnClick = ()=> {
+    axios.delete(`http://localhost:8000/api/tasks/${id}`)
+    .then((res) => {
+      if(res.status === 202) return window.location.reload();
+    })
+  }
 
   return (
     <div className="singleTodo">
@@ -19,14 +32,33 @@ const SingleTodoTask = ({ id, task }) => {
             >
         </input>
     <div className="buttons">
-        <picture onClick={handleOnClick} className="pictureCheck">
-          <img src={check} alt="check" id="check"></img>
+        <picture 
+          onClick={handleCheckOnClick} 
+          className="pictureCheck"
+        >
+          <img 
+            src={check} 
+            alt="check" 
+            id="check"
+          />
         </picture>
-        <picture className="pictureEdit">
-          <img src={edit} alt="edit" id="edit"></img>
+        <picture 
+          onClick={handleEditOnClick}
+          className="pictureEdit">
+          <img 
+            src={edit} 
+            alt="edit" 
+            id="edit"
+          />
         </picture>
-        <picture className="pictureErase">
-          <img src={erase} alt="delete" id="erase"></img>
+        <picture 
+          onClick={handleDeleteOnClick}
+          className="pictureErase">
+          <img 
+            src={erase} 
+            alt="delete" 
+            id="erase"
+          />
         </picture>
       </div>
     </div>

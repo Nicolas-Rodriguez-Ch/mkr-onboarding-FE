@@ -1,11 +1,13 @@
 import "./App.css";
 import SumbitFrom from "./components/SumbitFrom/SumbitForm";
 import SingleTodoTask from "./components/SingleTodoTask/SingleTodoTask";
+import UpdateSingleTodo from "./components/UpdateSigleTodo/UpdateSingleTodo";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
   const [taskList, setTasklist] = useState([]);
+  const [style, setStyle] = useState("none");
   useEffect(() => {
     axios.get("http://localhost:8000/api/tasks").then((res) => {
       setTasklist(res.data);
@@ -16,6 +18,9 @@ function App() {
 
   return (
     <div className="App">
+      <UpdateSingleTodo 
+        style={style}
+      />
       <section className="formBody">
         <header className="form__header">To-do List</header>
         <SumbitFrom />
@@ -26,6 +31,7 @@ function App() {
                 key={element.id}
                 id={element.id}
                 task={element.task}
+                setStyle = {setStyle}
               />
             );
           })}

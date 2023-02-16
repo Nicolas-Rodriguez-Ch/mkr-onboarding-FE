@@ -1,16 +1,36 @@
 import "./SumbitFrom.css";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
+
 
 const SumbitFrom = () => {
-  const handleSumbit = (event) => {
-    event.preventDefault();
-  };
+  const [submittedTask, setSubmittedTask] = useState('');
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post('http://localhost:8000/api/tasks', {
+      task: submittedTask
+    }).then((res) => {
+      if(res.status === 202) return window.location.reload();
+    })
+  };
+  
+  console.log(submittedTask);
   return (
     <form>
-      <input type="text" className="text"></input>
-      <button type="sumbit" className="add__button" onSubmit={handleSumbit}>
+      <input 
+        type="text" 
+        className="text" 
+        value={submittedTask}
+        onChange={(event)=>setSubmittedTask(event.target.value)}
+      >
+      </input>
+      <button 
+        type="sumbit" 
+        className="add__button" 
+        onClick={handleSubmit}
+      >
         {" "}
         <b>+</b> Agregar
       </button>
