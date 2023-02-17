@@ -1,5 +1,4 @@
 import "./SingleTodoTask.css";
-import { useState } from "react";
 import axios from "axios";
 import check from "../../images/check-small-svgrepo-com.svg";
 import edit from "../../images/write-svgrepo-com.svg";
@@ -12,9 +11,11 @@ const SingleTodoTask = ({
   setIndividualId,
   checkStatus,
 }) => {
+
+  // permite cambiar la llave checked a flase o true 
   const handleCheckOnClick = () => {
     axios
-      .put(`http://localhost:8000/api/tasks`, {
+      .put(`https://mkr-onboarding-final.onrender.com/api/tasks`, {
         id: id,
         task: task,
         check: checkStatus,
@@ -25,13 +26,15 @@ const SingleTodoTask = ({
       });
   };
 
+  // Renderiza el componente para editar una tarea
   const handleEditOnClick = () => {
     setIndividualId(id);
     setStyle("modalWindow");
   };
 
+  // Permite borrar una tarea
   const handleDeleteOnClick = () => {
-    axios.delete(`http://localhost:8000/api/tasks/${id}`).then((res) => {
+    axios.delete(`https://mkr-onboarding-final.onrender.com/api/tasks/${id}`).then((res) => {
       if (res.status === 202) return window.location.reload();
     });
   };

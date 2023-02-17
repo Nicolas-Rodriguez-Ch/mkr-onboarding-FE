@@ -7,16 +7,16 @@ import axios from "axios";
 const SumbitFrom = () => {
   const [submittedTask, setSubmittedTask] = useState('');
 
+  // Permite crear una tarea y mandarla a la bd
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8000/api/tasks', {
+    axios.post('https://mkr-onboarding-final.onrender.com/api/tasks', {
       task: submittedTask
     }).then((res) => {
       if(res.status === 202) return window.location.reload();
     })
   };
   
-  console.log(submittedTask);
   return (
     <form>
       <input 

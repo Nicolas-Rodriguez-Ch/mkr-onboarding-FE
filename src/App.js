@@ -9,13 +9,13 @@ function App() {
   const [taskList, setTasklist] = useState([]);
   const [style, setStyle] = useState("none");
   const [individualId, setIndividualId] = useState(0);
+
+  // Trae la información de la base de datos
   useEffect(() => {
-    axios.get("http://localhost:8000/api/tasks").then((res) => {
+    axios.get("https://mkr-onboarding-final.onrender.com/api/tasks").then((res) => {
       setTasklist(res.data);
     });
   }, []);
-
-  console.log(taskList);
 
   return (
     <div className="App">

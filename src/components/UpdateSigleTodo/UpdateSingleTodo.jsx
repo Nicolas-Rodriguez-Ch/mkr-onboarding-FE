@@ -8,8 +8,9 @@ const UpdateSingleTodo = (props) => {
   const [updatedTask, setUpdatedTask] = useState("");
 
   const handleUpdateClick = () => {
-    axios
-      .put(`http://localhost:8000/api/tasks/${props.individualId}`, {
+    
+    // Permite editar el task de una tarea en la bd
+    axios.put(`https://mkr-onboarding-final.onrender.com/api/tasks/${props.individualId}`, {
         task: updatedTask,
       })
       .then((res) => {
@@ -17,6 +18,7 @@ const UpdateSingleTodo = (props) => {
       });
   };
 
+  // Oculta el componente para editar tareas
   const handleCancelClick = () => {
     props.setStyle("none");
   };
