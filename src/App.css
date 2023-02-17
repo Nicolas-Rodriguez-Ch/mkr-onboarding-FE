@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .formBody {
@@ -38,14 +39,16 @@
   background-color: rgb(241, 241, 241);
 }
 
-.none{
+.none {
   display: none;
 }
 
 .true {
-  background-color: #C3F2D3 !important;
+  background-color: #c3f2d3 !important;
   color: black !important;
 }
-.true #check{
+.true #check {
   background-color: darkgreen;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }

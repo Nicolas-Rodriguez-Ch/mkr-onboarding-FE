@@ -19,25 +19,26 @@ function App() {
 
   return (
     <div className="App">
-      <UpdateSingleTodo 
+      <UpdateSingleTodo
         style={style}
         individualId={individualId}
+        setStyle={setStyle}
       />
       <section className="formBody">
         <header className="form__header">To-do List</header>
-          <SumbitFrom />
+        <SumbitFrom />
         <section className="dataBase">
           {taskList.map((element) => {
             return (
               <SingleTodoTask
-              key={element.id}
-              id={element.id}
-              task={element.task}
-              checkStatus={element.check}
-              setStyle = {setStyle}
-              setIndividualId={setIndividualId}
+                key={element.id}
+                id={element.id}
+                task={element.task}
+                checkStatus={element.check}
+                setStyle={setStyle}
+                setIndividualId={setIndividualId}
               />
-              );
+            );
           })}
         </section>
       </section>
