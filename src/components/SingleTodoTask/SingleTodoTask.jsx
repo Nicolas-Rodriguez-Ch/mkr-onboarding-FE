@@ -10,19 +10,22 @@ const SingleTodoTask = ({
   setStyle,
   setIndividualId,
   checkStatus,
+  checkAndEditCompletedTask,
+  deleteTask
 }) => {
 
   // permite cambiar la llave checked a flase o true 
   const handleCheckOnClick = () => {
     axios
-      .put(`https://mkr-onboarding-final.onrender.com/api/tasks`, {
+      .put(`https://mkr-onboarding-final.onrender.com/api/tasks/`, {
         id: id,
         task: task,
         check: checkStatus,
       })
       .then((res) => {
-        if (res.status === 202 || res.status === 400)
-          return window.location.reload();
+        checkAndEditCompletedTask(res.data);
+      }).catch((error) => {
+        alert("No se pudo actualizar la tarea")
       });
   };
 
@@ -34,8 +37,11 @@ const SingleTodoTask = ({
 
   // Permite borrar una tarea
   const handleDeleteOnClick = () => {
-    axios.delete(`https://mkr-onboarding-final.onrender.com/api/tasks/${id}`).then((res) => {
-      if (res.status === 202) return window.location.reload();
+    axios.delete(`https://mkr-onboarding-final.onrender.com/api/tasks/${id}`)
+    .then((res) => {
+      deleteTask(res.data);
+    }).catch((error) => {
+      alert("No se pudo actualizar la tarea")
     });
   };
 

@@ -12,21 +12,46 @@ function App() {
 
   // Trae la información de la base de datos
   useEffect(() => {
-    axios.get("https://mkr-onboarding-final.onrender.com/api/tasks").then((res) => {
+    axios.get("https://mkr-onboarding-final.onrender.com/api/tasks/").then((res) => {
       setTasklist(res.data);
     });
   }, []);
 
+  // Crea una nueva tarea
+  const createNewTask = (e)=> {
+    const arr = [...taskList, e];
+    setTasklist(arr);
+  }
+
+  // marca como completada una tarea
+  const checkAndEditCompletedTask = (e) =>{
+    const arr = [...taskList];
+    const index = arr.findIndex((element)=> element.id === e.id);
+    arr[index] = e;
+    setStyle('none');
+    setTasklist(arr);
+  }
+  
+  // borra una tarea 
+  const deleteTask = (e)=> {
+    const arr = [...taskList];
+    const filteredArr =arr.filter((element)=> element.id !== e.id);
+    setTasklist(filteredArr);
+  }
+
   return (
     <div className="App">
       <UpdateSingleTodo
+        checkAndEditCompletedTask ={checkAndEditCompletedTask}
         style={style}
         individualId={individualId}
         setStyle={setStyle}
       />
       <section className="formBody">
         <header className="form__header">To-do List</header>
-        <SumbitFrom />
+        <SumbitFrom 
+          createNewTask={createNewTask}
+        />
         <section className="dataBase">
           {taskList.map((element) => {
             return (
@@ -37,6 +62,8 @@ function App() {
                 checkStatus={element.check}
                 setStyle={setStyle}
                 setIndividualId={setIndividualId}
+                checkAndEditCompletedTask={checkAndEditCompletedTask}
+                deleteTask={deleteTask}
               />
             );
           })}

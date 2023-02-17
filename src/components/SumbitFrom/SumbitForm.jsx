@@ -4,16 +4,19 @@ import { useState } from "react";
 import axios from "axios";
 
 
-const SumbitFrom = () => {
+const SumbitFrom = (props) => {
   const [submittedTask, setSubmittedTask] = useState('');
 
   // Permite crear una tarea y mandarla a la bd
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('https://mkr-onboarding-final.onrender.com/api/tasks', {
+    axios.post('https://mkr-onboarding-final.onrender.com/api/tasks/', {
       task: submittedTask
     }).then((res) => {
-      if(res.status === 202) return window.location.reload();
+        props.createNewTask(res.data);
+        setSubmittedTask('');
+    }).catch((error) => {
+      alert("No se pudo crear la tarea")
     })
   };
   

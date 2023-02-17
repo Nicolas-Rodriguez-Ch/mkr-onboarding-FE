@@ -14,7 +14,10 @@ const UpdateSingleTodo = (props) => {
         task: updatedTask,
       })
       .then((res) => {
-        if (res.status === 202) return window.location.reload();
+        props.checkAndEditCompletedTask(res.data);
+        // actualizar el estado de la tarea
+      }).catch((error) => {
+        alert("No se pudo actualizar la tarea")
       });
   };
 
